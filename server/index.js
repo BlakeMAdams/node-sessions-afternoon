@@ -7,6 +7,7 @@ const express = require('express'),
 // MIDDLEWARE
 const checkForSession = require('./middlewares/checkForSession');
 
+
 // CONTROLLERS
 const swagController = require('./controllers/swag_controller'),
 	authController = require('./controllers/auth_controller'),
@@ -21,6 +22,7 @@ app.use(session({
 	saveUninitialized: false
 }))
 app.use(checkForSession);
+app.use(express.static( `${__dirname}/../public/build`) );
 
 // ENDPOINTS
 app.get('/api/swag', swagController.read);
